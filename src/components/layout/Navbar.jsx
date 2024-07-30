@@ -8,7 +8,7 @@ import logo from '../../img/costs_logo.png'
 
 function Navbar () {
     return (
-        <nav  class={Styles.Navbar}>
+        <nav  className={Styles.Navbar}>
             <Container>
                 <Link to="/">
                 <img src={logo} alt="Costs" />
