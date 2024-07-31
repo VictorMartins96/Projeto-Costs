@@ -1,21 +1,99 @@
 {
-    "projects": [] ,
-    "categories": [
+  "projects": [
     {
-        "id": 1,
-        "name": "infra"
-    },
-    {
-        "id": 2,
+      "id": "9d37",
+      "name": "Victor",
+      "budget": "5000",
+      "category": {
+        "id": "2",
         "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
     },
     {
-        "id": 3,
-        "name": "Design"
+      "id": "7488",
+      "name": "Victor",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
     },
     {
-        "id": 4,
-        "name": "Planejamento"
+      "id": "06d2",
+      "name": "Projeto teste",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "8529",
+      "name": "Projeto teste",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "c4cb",
+      "name": "Projeto 2",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "39e2",
+      "name": "Projeto 2",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "dc02",
+      "name": "Projeto 2",
+      "budget": "5000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": []
     }
-    ]
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "infra"
+    },
+    {
+      "id": 2,
+      "name": "Desenvolvimento"
+    },
+    {
+      "id": 3,
+      "name": "Design"
+    },
+    {
+      "id": 4,
+      "name": "Planejamento"
+    }
+  ]
 }
