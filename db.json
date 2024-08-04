@@ -24,33 +24,11 @@
     },
     {
       "id": "d5a7",
-      "name": "project 3",
-      "budget": "5000",
+      "name": "Projeto 3",
+      "budget": "55000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "518f",
-      "name": "Projeto 4",
-      "budget": "5000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "8c5a",
-      "name": "project 5",
-      "budget": "5000",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
       },
       "cost": 0,
       "services": []
