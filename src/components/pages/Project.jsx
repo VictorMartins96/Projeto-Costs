@@ -1,8 +1,12 @@
+import { parse , v4  as uuidv4 } from 'uuid'
+
 import Styles from './Project.module.css'
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
 import ProjectForm from '../Project/ProjectForm'
 import Message from '../layout/Message'
+import ServiceForm from '../service/ServiceForm'
+import ServiceCard from '../service/ServiceCard'
 
 import {useParams} from 'react-router-dom'
 import {useState , useEffect} from 'react'
@@ -11,6 +15,7 @@ function Project() {
 
     const { id } = useParams()
     const [project , setProject] = useState([])
+    const [services , setServices] = useState([])
     const [showProjectForm , setShowProjectForm] = useState(false)
     const [showServiceForm , setShowServiceForm] = useState(false)
     const [message , setMessage] = useState()
@@ -26,6 +31,7 @@ function Project() {
             }) .then(resp => resp.json())
             .then((data) => {
                 setProject(data)
+                setServices(data.services)
             }).catch((err)=> console.log(err))
         }, 200)
     } , [id])
@@ -54,6 +60,71 @@ function Project() {
             setType('sucess')
         })
         .catch((err) => console.log(err))
+    }
+
+    function createService(project) {
+        setMessage('')
+
+        const lastService = project.services[project.services.length - 1]
+
+        lastService.id = uuidv4()
+
+        const lastServiceCost = lastService.cost
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+        //validação de valor máximo
+        if(newCost > parseFloat(project.budget)) {
+            setMessage('Orçamento ultrapassado! Verifique o valor do serviço')
+            setType('error')
+            project.services.pop()
+            return false
+        }
+
+        // add service cost to project total cost
+
+        project.cost = newCost
+
+        //atualizar projeto
+        fetch(`http://localhost:5000/projects/${project.id}` , {
+            method: 'PATCH' , 
+            headers: {
+                'Content-type':'application/json'
+            } , 
+            body: JSON.stringify(project)
+        }) .then((resp) => resp.json())
+        .then((data) => {
+            setShowServiceForm(false)
+        })
+        .catch((err) => console.log(err))
+
+    }
+
+    function removeService(id , cost) {
+        const serviceUpdate = project.services.filter(
+            (service) => service.id !== id
+        )
+
+        const projectUpdated = project
+
+        projectUpdated.services = serviceUpdate
+
+        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+
+        fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+            method: 'PATCH' , 
+            headers: {
+                'Content-type':'application/json' ,
+            } ,
+            body: JSON.stringify(projectUpdated) , 
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setProject(projectUpdated)
+            setServices(serviceUpdate)
+            setMessage('Serviço removido com sucesso!')
+        })
+        .catch((err) => console.log(err))
+
     }
 
     function toggleProjectForm() {
@@ -102,14 +173,27 @@ function Project() {
                     {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
                     </button>
                     <div className={Styles.project_info}>
-                        {showServiceForm && <div>Formulário do serviço</div>
-
-                        }
+                        {showServiceForm && (
+                            <ServiceForm handleSubmit={createService}
+                            btnText="Adicionar serviço"
+                            projectData={project} />
+                        )}
                     </div>
             </div>
             <h2>Serviços</h2>
             <Container customClass="start">
-                <p>Itens de serviço</p>
+                {services.length > 0 &&
+                    services.map((service) => (
+                        <ServiceCard
+                        id={service.id} 
+                        name={service.name} 
+                        cost={service.cost}
+                        description={service.description}
+                        key={service.id}
+                        handleRemove={removeService} />
+                    )) 
+                }
+                {services.length === 0 && <p>Não há serviços cadastrados</p>}
             </Container>
             </Container>
         </div> : (
