@@ -1,28 +1,6 @@
 {
   "projects": [
     {
-      "id": "d943",
-      "name": "project teste",
-      "budget": "5000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "a0ee",
-      "name": "Projeto 2",
-      "budget": "3000",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
       "id": "d5a7",
       "name": "Projeto 3",
       "budget": "55000",
@@ -32,6 +10,24 @@
       },
       "cost": 0,
       "services": []
+    },
+    {
+      "id": "7325",
+      "name": "Projeto Hogwarts",
+      "budget": "7991",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 1500,
+      "services": [
+        {
+          "name": "Serviço caçar o Você-sabe-quem",
+          "cost": "1500",
+          "description": "Pegar ele na porrada",
+          "id": "6ebdc494-1244-404a-9012-8c8d8ca2a71e"
+        }
+      ]
     }
   ],
   "categories": [
